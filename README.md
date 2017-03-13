@@ -11,7 +11,7 @@ This goal will likely be within your ZPD if you…
 - Are interested in building full-stack web applications
 - Are interested in how user stories get translated into software design and implementation choices
 
-### Description
+## Description
 
 In this goal, you will build a simple to-do list app, where users can store their tasks in a database, see their tasks, and mark them complete.
 
