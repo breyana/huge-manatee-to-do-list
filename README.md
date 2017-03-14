@@ -23,7 +23,7 @@ Most learners have used Postgres for their database and pg-promise for connectin
 
 If you are already experienced with this project, you may want to choose a different database such as MongoDB.
 
-You may design your own UI, but it’s probably better to copy someone else’s design. 
+You may design your own UI, but it’s probably better to copy someone else’s design.
 
 ## Context
 
@@ -57,6 +57,7 @@ When working on this goal, you’ll encounter questions like:
 ### Stretch
 
  - [ ]  App is deployed on Heroku.
+ - [ ]  Added: Drag and Drop priorities
  - [ ]  Users can create multiple to-do lists.
  - [ ]  Users have their own account and can sign up and log in/out.
  - [ ]  App is written with ES6 and compiled using babel.
