@@ -13,4 +13,7 @@ CREATE TABLE tasklist (
 );
 
 INSERT INTO tasklist (task, label)
-  VALUES ('This is the first thing to do', 'Misc')
+  VALUES ('This is the first thing to do', 'Misc'),
+  ('Item 2', 'Misc'),
+  ('Item 3', 'Misc'),
+  ('Item 4', 'Misc')

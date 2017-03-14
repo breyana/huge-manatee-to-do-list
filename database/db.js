@@ -11,12 +11,16 @@ const GET_ALL = 'SELECT * FROM tasklist ORDER BY priority ASC'
 const DELETE_ONE = 'DELETE FROM tasklist WHERE id = $1'
 const CREATE_ONE = 'INSERT INTO tasklist(task) VALUES ($1)'
 const UPDATE_ONE = 'UPDATE tasklist SET task = $2 WHERE id = $1'
-const TOGGLE_COMPLETE = 'UPDATE tasklist SET completed = NOT completed WHERE is = $1'
+const TOGGLE_COMPLETE = 'UPDATE tasklist SET completed = NOT completed WHERE id = $1'
 const UPDATE_PRIORITY = 'UPDATE tasklist SET priority = $2 WHERE id = $1'
 
 const Todos = {
   getAll: () => {
     return db.any(GET_ALL,[])
+  },
+
+  getOne: (id) => {
+    return db.one(GET_ONE, [id])
   },
 
   deleteOne: (id) => {

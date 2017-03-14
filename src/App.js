@@ -5,35 +5,33 @@ import TodoList from './TodoList'
 import TodoForm from './TodoForm'
 
 class App extends Component {
-  state = {
-    items: [
-      {
-        task: "Item One",
-        complete: false,
-        priority: 0
-      },
-      {
-        task: "Item Two",
-        complete: false,
-        priority: 1
-      },
-      {
-        task: "Item Three",
-        complete: false,
-        priority: 2
-      },
-      {
-        task: "Item Four",
-        complete: true,
-        priority: 3
-      }
-    ]
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      items: []
+    }
   }
 
-  removeItem = (index, item) => {
-    let {items} = this.state
-    items.splice(index, 1)
-    this.setState({items})
+  componentWillMount() {
+    this.getAllItems()
+  }
+
+  getAllItems() {
+    fetch('http://localhost:5000', {
+      method: 'get',
+    })
+    .then( response => response.json() )
+      .then(results => {
+        this.setState( { items: results } )
+      })
+  }
+
+  removeItem(event, task) {
+    fetch(`http://localhost:5000/${task.id}`, {
+      method: 'delete',
+    })
+      .then( () => this.getAllItems() )
   }
 
   updateItem = (index, item) => {
@@ -42,12 +40,17 @@ class App extends Component {
     this.setState({items})
   }
 
-  handleSubmit = (task) => {
-    let items = this.state.items
-    let priority = items.length
-    let complete = false
-    items = items.concat([{task, complete, priority}])
-    this.setState({items})
+  handleSubmit(task) {
+    console.log("what is task", task);
+    fetch('http://localhost:5000/', {
+      method: 'post',
+      body: JSON.stringify( {task: task} ),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    })
+    .then( () => this.getAllItems() )
   }
 
   render() {
@@ -60,10 +63,10 @@ class App extends Component {
 
         <div className="card-panel">
         <div>
-          <TodoForm onTaskSubmit={this.handleSubmit} />
+          <TodoForm onTaskSubmit={this.handleSubmit.bind(this)} />
         </div>
           <TodoList items={this.state.items}
-          onDeleteItem={this.removeItem}
+          onDeleteItem={this.removeItem.bind(this)}
           onUpdateItem={this.updateItem} />
         </div>
       </div>

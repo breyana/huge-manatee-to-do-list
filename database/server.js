@@ -15,6 +15,12 @@ app.get('/', function(request, response) {
     .then( (results) => response.json(results) )
 })
 
+app.get('/:id', function(request, response) {
+  const id = request.params.id
+  Todos.getOne(id)
+    .then((results) => response.json(results))
+})
+
 app.delete('/:id', function (request, response) {
   const id = request.params.id
   Todos.deleteOne(id)
@@ -23,6 +29,7 @@ app.delete('/:id', function (request, response) {
 
 app.post('/', function (request, response) {
   const {task} = request.body
+  console.log('request.body', request.body);
   Todos.createTask(task)
     .then( () => response.json({1: 'posted'}) )
 })
