@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  margin-top: 25px;
 }
 
 .App-logo {
@@ -8,10 +8,16 @@
 }
 
 .App-header {
+  text-align: center;
   background-color: #222;
-  height: 150px;
+  height: 200 px;
   padding: 20px;
   color: white;
+}
+
+.card-panel {
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .App-intro {

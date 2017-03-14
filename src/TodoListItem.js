@@ -1,5 +1,4 @@
-import React, { PropTypes } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 
 class TodoListItem extends React.Component {
   state = {
@@ -28,13 +27,13 @@ class TodoListItem extends React.Component {
   }
 
   render() {
-    let { content, priority } = this.props.item
+    let { task } = this.props.item
     let { complete } = this.state
 
     return (
       <li className="TodoListItem collection-item">
         <span className="TodoListItem-content">
-          {content}
+          {task}
         </span>
         <div className="TodoListItem-controls">
           <div className="TodoListItem-complete switch">

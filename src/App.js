@@ -2,29 +2,30 @@ import React, { Component } from 'react';
 import logo from '../public/huemanatee.gif';
 import './App.css';
 import TodoList from './TodoList'
+import TodoForm from './TodoForm'
 
 class App extends Component {
   state = {
     items: [
       {
         task: "Item One",
-        complete: true,
-        priority: 1
+        complete: false,
+        priority: 0
       },
       {
         task: "Item Two",
-        complete: true,
-        priority: 2
+        complete: false,
+        priority: 1
       },
       {
         task: "Item Three",
-        complete: true,
-        priority: 3
+        complete: false,
+        priority: 2
       },
       {
         task: "Item Four",
         complete: true,
-        priority: 4
+        priority: 3
       }
     ]
   }
@@ -41,6 +42,14 @@ class App extends Component {
     this.setState({items})
   }
 
+  handleSubmit = (task) => {
+    let items = this.state.items
+    let priority = items.length
+    let complete = false
+    items = items.concat([{task, complete, priority}])
+    this.setState({items})
+  }
+
   render() {
     return (
       <div className="App">
@@ -50,11 +59,13 @@ class App extends Component {
         </div>
 
         <div className="card-panel">
+        <div>
+          <TodoForm onTaskSubmit={this.handleSubmit} />
+        </div>
           <TodoList items={this.state.items}
           onDeleteItem={this.removeItem}
           onUpdateItem={this.updateItem} />
         </div>
-
       </div>
     );
   }
