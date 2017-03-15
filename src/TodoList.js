@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import TodoListItem from './TodoListItem'
 
 class TodoList extends React.Component {
@@ -7,7 +7,7 @@ class TodoList extends React.Component {
     let data = { todo: [], done: [] }
 
     items.map((item, index) => {
-      let listItem = <TodoListItem item={item} {...props} id={index} key={item.priority} />
+      let listItem = <TodoListItem item={item} {...props} id={item.task_id} key={item.task_id} />
       data[item.complete === true ? 'done' : 'todo'].push(listItem)
       return item
     })

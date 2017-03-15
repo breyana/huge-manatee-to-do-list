@@ -6,7 +6,6 @@
     "body-parser": "^1.17.1",
     "cors": "^2.8.1",
     "express": "^4.15.2",
-    "materialize-css": "^0.98.0",
     "pg-promise": "^5.6.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
@@ -15,7 +14,7 @@
     "react-scripts": "0.9.5"
   },
   "scripts": {
-    "start": "react-scripts start & npm run db:start",
+    "start": "react-scripts start --watch & npm run db:start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

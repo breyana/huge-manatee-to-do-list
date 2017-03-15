@@ -15,28 +15,35 @@ app.get('/', function(request, response) {
     .then( (results) => response.json(results) )
 })
 
+app.get('/:id', function(request, response) {
+  const { id } = request.params
+  Todos.getOne(id)
+    .then( (results) => response.json(results))
+})
+
 app.delete('/:id', function (request, response) {
-  const id = request.params.id
+  console.log("request params", request.params);
+  const { id } = request.params
   Todos.deleteOne(id)
     .then( () => response.json({1: 'success'}) )
 })
 
 app.post('/', function (request, response) {
-  const {task} = request.body
+  const { task } = request.body
   Todos.createTask(task)
     .then( () => response.json({1: 'posted'}) )
 })
 
-app.put('/priority', function (request, response) {
-  const {higherTasks, lowerTasks} = request.body
-  Todos.swapPriority( lowerTasks, higherTasks )
-    .then( () => response.json({1: 'complete swap'}) )
-})
+// app.put('/priority', function (request, response) {
+//   const {higherTasks, lowerTasks} = request.body
+//   Todos.swapPriority( lowerTasks, higherTasks )
+//     .then( () => response.json({1: 'complete swap'}) )
+// })
 
 app.put('/complete/:id', function(request, response) {
-  const id = request.params.id
+  const { id } = request.params
   Todos.toggleComplete(id)
-    .then( () => response.json({1: 'completed set'}) )
+    .then( () => response.json({1: 'complete set'}) )
 })
 
 app.put('/:id', function(request, response) {

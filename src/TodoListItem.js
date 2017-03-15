@@ -1,9 +1,12 @@
-import React, { PropTypes } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 
 class TodoListItem extends React.Component {
-  state = {
-    complete: false
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      items: []
+    }
   }
 
   componentWillMount() {
@@ -12,14 +15,33 @@ class TodoListItem extends React.Component {
   }
 
   handleChange = () => {
-    let { onUpdateItem, id, item } = this.props
+    let { onUpdateItem, item } = this.props
+    let { task_id } = this.props.item
+    // console.log(this.props);
+    console.log('this.props', this.props);
+
     item.complete = !item.complete
 
-    this.setState({ complete: item.complete }, () => {
-      setTimeout(() => {
-        onUpdateItem(id, item)
-      }, 300)
+    console.log("task_id", task_id);
+    fetch(`http://localhost:5000/complete/${task_id}`, {
+      method: 'put'
     })
+    // .then(results => {
+    //   console.log(results);
+    // })
+    .then( response => response.json() )
+      .then(results => {
+        this.setState({ complete: results }, () => {
+          setTimeout(() => {
+            onUpdateItem(task_id, item)
+          }, 300)
+        })
+      })
+    // this.setState({ complete: item.complete }, () => {
+    //   setTimeout(() => {
+    //     onUpdateItem(id, item)
+    //   }, 300)
+    // })
   }
 
   handleRemove = () => {
@@ -28,13 +50,13 @@ class TodoListItem extends React.Component {
   }
 
   render() {
-    let { content, priority } = this.props.item
+    let { task } = this.props.item
     let { complete } = this.state
 
     return (
       <li className="TodoListItem collection-item">
         <span className="TodoListItem-content">
-          {content}
+          {task}
         </span>
         <div className="TodoListItem-controls">
           <div className="TodoListItem-complete switch">
