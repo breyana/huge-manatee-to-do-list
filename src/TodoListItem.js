@@ -1,8 +1,12 @@
 import React from 'react'
 
 class TodoListItem extends React.Component {
-  state = {
-    complete: false
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      items: []
+    }
   }
 
   componentWillMount() {
@@ -11,14 +15,33 @@ class TodoListItem extends React.Component {
   }
 
   handleChange = () => {
-    let { onUpdateItem, id, item } = this.props
+    let { onUpdateItem, item } = this.props
+    let { id } = this.props.item
+    // console.log(this.props);
+    console.log('this.props', this.props);
+
     item.complete = !item.complete
 
-    this.setState({ complete: item.complete }, () => {
-      setTimeout(() => {
-        onUpdateItem(id, item)
-      }, 300)
+    console.log("id", id);
+    fetch(`http://localhost:5000/complete/${id}`, {
+      method: 'put'
     })
+    // .then(results => {
+    //   console.log(results);
+    // })
+    .then( response => response.json() )
+      .then(results => {
+        this.setState({ complete: results }, () => {
+          setTimeout(() => {
+            onUpdateItem(id, item)
+          }, 300)
+        })
+      })
+    // this.setState({ complete: item.complete }, () => {
+    //   setTimeout(() => {
+    //     onUpdateItem(id, item)
+    //   }, 300)
+    // })
   }
 
   handleRemove = () => {

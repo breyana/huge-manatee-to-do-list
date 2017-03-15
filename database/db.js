@@ -36,6 +36,7 @@ const Todos = {
   },
 
   toggleComplete: (id) => {
+    console.log('IN THE DB-0--->',id);
     return db.none(TOGGLE_COMPLETE, [id])
   },
 
