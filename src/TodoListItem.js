@@ -16,14 +16,14 @@ class TodoListItem extends React.Component {
 
   handleChange = () => {
     let { onUpdateItem, item } = this.props
-    let { id } = this.props.item
+    let { task_id } = this.props.item
     // console.log(this.props);
     console.log('this.props', this.props);
 
     item.complete = !item.complete
 
-    console.log("id", id);
-    fetch(`http://localhost:5000/complete/${id}`, {
+    console.log("task_id", task_id);
+    fetch(`http://localhost:5000/complete/${task_id}`, {
       method: 'put'
     })
     // .then(results => {
@@ -33,7 +33,7 @@ class TodoListItem extends React.Component {
       .then(results => {
         this.setState({ complete: results }, () => {
           setTimeout(() => {
-            onUpdateItem(id, item)
+            onUpdateItem(task_id, item)
           }, 300)
         })
       })

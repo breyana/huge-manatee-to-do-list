@@ -5,10 +5,10 @@ CREATE DATABASE hugemanatee;
 
 DROP TABLE IF EXISTS tasklist;
 CREATE TABLE tasklist (
-  id SERIAL PRIMARY KEY,
+  task_id SERIAL PRIMARY KEY,
   task VARCHAR(150) NOT NULL,
-  completed BOOLEAN DEFAULT false,
-  priority SERIAL,
+  complete BOOLEAN DEFAULT false,
+  -- priority SERIAL,
   label VARCHAR(20)
 );
 
