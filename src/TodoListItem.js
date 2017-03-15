@@ -10,27 +10,27 @@ class TodoListItem extends React.Component {
   }
 
   componentWillMount() {
-    let { complete } = this.props.item
+    const { complete } = this.props.item
     this.setState({ complete })
   }
 
   handleChange = () => {
-    let { onUpdateItem, item } = this.props
-    let { task_id } = this.props.item
+    const { onUpdateItem, item } = this.props
+    const { task_id } = this.props.item
 
     item.complete = !item.complete
 
     fetch(`http://localhost:5000/complete/${task_id}`, {
       method: 'put'
     })
-    .then( response => response.json() )
-      .then(results => {
-        this.setState({ complete: results }, () => {
-          setTimeout(() => {
-            onUpdateItem(task_id, item)
-          }, 300) //Timeout allows animation to play
+      .then( response => response.json() )
+        .then(results => {
+          this.setState({ complete: results }, () => {
+            setTimeout(() => {
+              onUpdateItem(task_id, item)
+            }, 300) //Timeout allows animation to play
+          })
         })
-      })
   }
 
   handleRemove = () => {
@@ -39,8 +39,8 @@ class TodoListItem extends React.Component {
   }
 
   render() {
-    let { task } = this.props.item
-    let { complete } = this.state
+    const { task } = this.props.item
+    const { complete } = this.state
 
     return (
       <li className="TodoListItem collection-item">

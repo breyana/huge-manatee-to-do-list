@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 class TodoForm extends React.Component {
   doSubmit = (event) => {
     event.preventDefault()
-    let task = ReactDOM.findDOMNode(this.refs.task).value.trim()
+    const task = ReactDOM.findDOMNode(this.refs.task).value.trim()
     if (!task) {
       return
     }
