@@ -36,12 +36,10 @@ class App extends Component {
 
   updateItem = (index, item) => {
     let {items} = this.state
-    items[index] = item
     this.setState({items})
   }
 
   handleSubmit(task) {
-    console.log("what is task", task);
     fetch('http://localhost:5000/', {
       method: 'post',
       body: JSON.stringify( {task: task} ),

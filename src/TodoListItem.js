@@ -17,31 +17,20 @@ class TodoListItem extends React.Component {
   handleChange = () => {
     let { onUpdateItem, item } = this.props
     let { task_id } = this.props.item
-    // console.log(this.props);
-    console.log('this.props', this.props);
 
     item.complete = !item.complete
 
-    console.log("task_id", task_id);
     fetch(`http://localhost:5000/complete/${task_id}`, {
       method: 'put'
     })
-    // .then(results => {
-    //   console.log(results);
-    // })
     .then( response => response.json() )
       .then(results => {
         this.setState({ complete: results }, () => {
           setTimeout(() => {
             onUpdateItem(task_id, item)
-          }, 300)
+          }, 300) //Timeout allows animation to play
         })
       })
-    // this.setState({ complete: item.complete }, () => {
-    //   setTimeout(() => {
-    //     onUpdateItem(id, item)
-    //   }, 300)
-    // })
   }
 
   handleRemove = () => {
@@ -88,8 +77,5 @@ class TodoListItem extends React.Component {
 
   static displayName = "TodoListItem"
 }
-
-// ReactDOM.render(<App />, document.body)
-// ReactDOM.render(<card-panel />, document.body)
 
 export default TodoListItem
