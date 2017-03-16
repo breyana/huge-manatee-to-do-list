@@ -7,10 +7,7 @@ placeholder.className = "placeholder";
 class List extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {...props}
-    this.state = {
-      items: [1, 2, 3, 4, 5]
-    };
+    this.state = {...props}
   }
 
   dragStart(event) {
@@ -20,11 +17,13 @@ class List extends React.Component {
   }
 
   dragEnd(event) {
-    this.dragged.style.display = 'block';
+    this.dragged.style.display = 'flex';
+    console.log('parentNode:', this.dragged.parentNode)
     this.dragged.parentNode.removeChild(placeholder);
 
     // update state
-     const items = this.state.items;
+     const items = this.props.items;
+     console.log('items',items);
      const from = Number(this.dragged.dataset.id);
      let to = Number(this.over.dataset.id);
      if(from < to) to--;
@@ -43,7 +42,9 @@ class List extends React.Component {
   mapToListItems = (items, props) => {
     const data = { todo: [], done: [] }
 
-    items.map((item, index) => {
+    items = items.filter( item => item)
+    console.log(items);
+    items.map( (item, index) => {
       const listItem = <TodoListItem
         item={item}
         {...props}
@@ -61,39 +62,36 @@ class List extends React.Component {
   }
 
   render() {
-    // const { items, ...props } = this.props
-    // const listItems = this.mapToListItems(items, props)
+    const { items, ...props } = this.props
+    const listItems = this.mapToListItems(items, props)
 
-    var listItems = this.state.items.map((item, i) => {
-      return (
-        <li
-          data-id={i}
-          key={i}
-          draggable='true'
-          onDragEnd={this.dragEnd.bind(this)}
-          onDragStart={this.dragStart.bind(this)}>{item}</li>
-      )
-     });
+  //  console.log(this.props.items);
+
+    // const listItems = this.state.items.map( (item, index) => {
+    //   return (
+    //     <li
+    //       data-id={index}
+    //       key={index}
+    //       draggable='true'
+    //       onDragEnd={this.dragEnd.bind(this)}
+    //       onDragStart={this.dragStart.bind(this)}>{item}</li>
+    //   )
+    //  })
 
     return (
-      <ul onDragOver={this.dragOver.bind(this)}>
-        {listItems}
-      </ul>
+      <div className="TodoList">
+        Incomplete:
+        <ul className="TodoList-active collection" onDragOver={this.dragOver.bind(this)}>
+          {/* {listItems} */}
+          {listItems.todo}
+        </ul>
+        Complete:
+        <ul className="TodoList-done collection" onDragOver={this.dragOver.bind(this)}>
+          {/* {listItems} */}
+          {listItems.done}
+        </ul>
+      </div>
     )
-
-    // return (
-    //   <div className="TodoList">
-    //     Incomplete:
-    //     <ul className="TodoList-active collection" onDragOver={this.dragOver.bind(this)}
-    //     draggable="true">
-    //       {listItems.todo}
-    //     </ul>
-    //     Complete:
-    //     <ul className="TodoList-done collection" onDragOver={this.dragOver.bind(this)}>
-    //       {listItems.done}
-    //     </ul>
-    //   </div>
-    // )
   	}
   }
 
