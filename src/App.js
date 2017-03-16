@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../public/huemanatee.gif';
 import './App.css';
-import TodoList from './TodoList'
+import List from './List'
 import TodoForm from './TodoForm'
 
 // import DragAndDrop from './DragAndDrop'
@@ -65,7 +65,7 @@ class App extends Component {
         <div>
           <TodoForm onTaskSubmit={this.handleSubmit.bind(this)} />
         </div>
-          <TodoList items={this.state.items}
+          <List items={this.state.items}
           onDeleteItem={this.removeItem.bind(this)}
           onUpdateItem={this.updateItem} />
         </div>
