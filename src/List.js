@@ -5,10 +5,10 @@ const placeholder = document.createElement("li");
 placeholder.className = "placeholder";
 
 class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {...props}
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {...props}
+  // }
 
   dragStart(event) {
     this.dragged = event.currentTarget;
@@ -18,13 +18,13 @@ class List extends React.Component {
 
   dragEnd(event) {
     this.dragged.style.display = 'flex';
-    console.log('parentNode:', this.dragged.parentNode)
     this.dragged.parentNode.removeChild(placeholder);
 
     // update state
      const items = this.props.items;
-     console.log('items',items);
      const from = Number(this.dragged.dataset.id);
+     console.log('over', this.over);
+     console.log('dragged', this.dragged);
      let to = Number(this.over.dataset.id);
      if(from < to) to--;
      items.splice(to, 0, items.splice(from, 1)[0]);
@@ -43,7 +43,6 @@ class List extends React.Component {
     const data = { todo: [], done: [] }
 
     items = items.filter( item => item)
-    console.log(items);
     items.map( (item, index) => {
       const listItem = <TodoListItem
         item={item}
@@ -65,9 +64,7 @@ class List extends React.Component {
     const { items, ...props } = this.props
     const listItems = this.mapToListItems(items, props)
 
-  //  console.log(this.props.items);
-
-    // const listItems = this.state.items.map( (item, index) => {
+    // const listItems = this.props.items.map( (item, index) => {
     //   return (
     //     <li
     //       data-id={index}
@@ -82,12 +79,12 @@ class List extends React.Component {
       <div className="TodoList">
         Incomplete:
         <ul className="TodoList-active collection" onDragOver={this.dragOver.bind(this)}>
-          {/* {listItems} */}
+          {/* {listItems.task} */}
           {listItems.todo}
         </ul>
         Complete:
         <ul className="TodoList-done collection" onDragOver={this.dragOver.bind(this)}>
-          {/* {listItems} */}
+          {/* {listItems.task} */}
           {listItems.done}
         </ul>
       </div>

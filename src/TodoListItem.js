@@ -27,7 +27,6 @@ class TodoListItem extends React.Component {
         })
   }
 
-
   handleRemove = () => {
     const { onDeleteItem, id, item } = this.props
     onDeleteItem(id, item)
@@ -57,7 +56,6 @@ class TodoListItem extends React.Component {
         draggable="true"
         data-id={this.props.id}
         key={this.props.id}
-        draggable='true'
         onDragEnd={this.props.onDragEnd}
         onDragStart={this.props.onDragStart}>
         <span className="TodoListItem-content">
