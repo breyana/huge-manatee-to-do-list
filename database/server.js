@@ -22,7 +22,6 @@ app.get('/:id', function(request, response) {
 })
 
 app.delete('/:id', function (request, response) {
-  console.log("request params", request.params);
   const { id } = request.params
   Todos.deleteOne(id)
     .then( () => response.json({1: 'success'}) )
@@ -34,11 +33,11 @@ app.post('/', function (request, response) {
     .then( () => response.json({1: 'posted'}) )
 })
 
-// app.put('/priority', function (request, response) {
-//   const {higherTasks, lowerTasks} = request.body
-//   Todos.swapPriority( lowerTasks, higherTasks )
-//     .then( () => response.json({1: 'complete swap'}) )
-// })
+app.put('/priority', function (request, response) {
+  const {higherTasks, lowerTasks} = request.body
+  Todos.swapPriority( lowerTasks, higherTasks )
+    .then( () => response.json({1: 'complete swap'}) )
+})
 
 app.put('/complete/:id', function(request, response) {
   const { id } = request.params

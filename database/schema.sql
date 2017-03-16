@@ -8,7 +8,7 @@ CREATE TABLE tasklist (
   task_id SERIAL PRIMARY KEY,
   task VARCHAR(150) NOT NULL,
   complete BOOLEAN DEFAULT false,
-  -- priority SERIAL,
+  priority SERIAL,
   label VARCHAR(20)
 );
 

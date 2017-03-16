@@ -28,20 +28,18 @@ class App extends Component {
   }
 
   removeItem(event, task) {
-    fetch(`http://localhost:5000/${task.id}`, {
+    fetch(`http://localhost:5000/${task.task_id}`, {
       method: 'delete',
     })
       .then( () => this.getAllItems() )
   }
 
   updateItem = (index, item) => {
-    let {items} = this.state
-    items[index] = item
+    const {items} = this.state
     this.setState({items})
   }
 
   handleSubmit(task) {
-    console.log("what is task", task);
     fetch('http://localhost:5000/', {
       method: 'post',
       body: JSON.stringify( {task: task} ),
