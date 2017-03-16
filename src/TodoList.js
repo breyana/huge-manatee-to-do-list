@@ -1,20 +1,7 @@
 import React from 'react'
 import TodoListItem from './TodoListItem'
-import TaskEdit from './TaskEdit'
-
-const placeholder = document.createElement("li");
-placeholder.className = "placeholder";
 
 class TodoList extends React.Component {
-
-  // dragOver = (event) => {
-  //   event.preventDefault()
-  //   this.dragged = event.currentTarget
-  //   this.dragged.style.display = "none"
-  //   if(event.target.className === "placeholder") return
-  //   this.over = event.target
-  //   event.target.parentNode.insertBefore(placeholder, event.target)
-  // }
 
   mapToListItems = (items, props) => {
     const data = { todo: [], done: [] }
@@ -35,13 +22,17 @@ class TodoList extends React.Component {
     return (
       <div className="TodoList">
         Incomplete:
+
         <ul className="TodoList-active collection">
           {listItems.todo}
         </ul>
+
         Complete:
-        <ul className="TodoList-done collection">
+
+        <ul className="TodoList-done collection" >
           {listItems.done}
         </ul>
+
       </div>
     )
   }
@@ -49,7 +40,7 @@ class TodoList extends React.Component {
   static propTypes = {
     items: React.PropTypes.array.isRequired,
     onDeleteItem: React.PropTypes.func.isRequired,
-    onUpdateItem: React.PropTypes.func.isRequired
+    onUpdateItem: React.PropTypes.func.isRequired,
   }
 
   static displayName = "TodoList"

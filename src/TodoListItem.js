@@ -1,7 +1,5 @@
 import React from 'react'
-
-const placeholder = document.createElement("li");
-placeholder.className = "placeholder";
+import InlineEdit from 'react-edit-inline'
 
 class TodoListItem extends React.Component {
   constructor(props) {
@@ -17,7 +15,7 @@ class TodoListItem extends React.Component {
     this.setState({ complete })
   }
 
-  handleChange = () => {
+  handleCompletionChange = () => {
     const { onUpdateItem, item } = this.props
     const { task_id } = this.props.item
 
@@ -36,49 +34,41 @@ class TodoListItem extends React.Component {
         })
   }
 
-  handleEditTask = (input) => {
-    const { task_id } = this.props.item
-
-    this.props.item.task = input
-    fetch(`http://localhost:5000/${task_id}`, {
-      method: 'put'
-    })
-      .then( response => response.json() )
-        .then( results => { this.setState( { items: results } ) } )
-  }
-
-  editTask = () => {
-
-  }
 
   handleRemove = () => {
     const { onDeleteItem, id, item } = this.props
     onDeleteItem(id, item)
   }
 
-  // dragStart = (event) => {
-  //   this.dragged = event.currentTarget
-  //   event.dataTransfer.effectAllowed = 'move'
-  // }
-  //
-  // dragEnd = (event) => {
-  //   this.dragged.parentNode.removeChild(placeholder)
-  //   const data = this.state.data
-  //   const from = Number(this.dragged.dataset.id)
-  //   let to = Number(this.over.dataset.id)
-  //   if(from < to) to--
-  //   data.splice(to, 0, data.splice(from, 1)[0])
-  //   this.setState({data: data})
-  // }
+  changeData(data) {
+    const { task_id } = this.props.item
+
+    fetch(`http://localhost:5000/${task_id}`, {
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      method: 'put',
+      body: JSON.stringify({ task: data.message })
+    })
+      .then( response => response.json() )
+        .then( results => { this.setState( { task: results } ) } )
+  }
+
 
   render() {
     const { task } = this.props.item
     const { complete } = this.state
 
     return (
-      <li className="TodoListItem collection-item">
-        <span className="TodoListItem-content" onClick={this.editTask.bind(this)}>
-          {task}
+      <li className="TodoListItem collection-item draggable">
+        <span className="TodoListItem-content">
+          <InlineEdit
+            activeClassName="editing"
+            text={task}
+            paramName="message"
+            change={this.changeData.bind(this)}
+          />
         </span>
         <div className="TodoListItem-controls">
           <div className="TodoListItem-complete switch">
@@ -86,7 +76,7 @@ class TodoListItem extends React.Component {
               Incomplete
               <input type="checkbox"
                 checked={complete}
-                onChange={this.handleChange} />
+                onChange={this.handleCompletionChange} />
               <span className="lever"></span>
               Complete
             </label>
