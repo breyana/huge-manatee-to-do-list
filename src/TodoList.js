@@ -1,7 +1,20 @@
 import React from 'react'
 import TodoListItem from './TodoListItem'
+import TaskEdit from './TaskEdit'
+
+const placeholder = document.createElement("li");
+placeholder.className = "placeholder";
 
 class TodoList extends React.Component {
+
+  // dragOver = (event) => {
+  //   event.preventDefault()
+  //   this.dragged = event.currentTarget
+  //   this.dragged.style.display = "none"
+  //   if(event.target.className === "placeholder") return
+  //   this.over = event.target
+  //   event.target.parentNode.insertBefore(placeholder, event.target)
+  // }
 
   mapToListItems = (items, props) => {
     const data = { todo: [], done: [] }
