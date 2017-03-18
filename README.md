@@ -1,4 +1,10 @@
 # huge-manatee-to-do-list
+
+# Installation & Setup
+- To initialize: `npm i`
+- To initialize database: `npm run db:init`
+- To start database: `npm run db:start`
+
 ## Challenge Rating
 
 This goal will likely be within your ZPD if you…
@@ -23,7 +29,7 @@ Most learners have used Postgres for their database and pg-promise for connectin
 
 If you are already experienced with this project, you may want to choose a different database such as MongoDB.
 
-You may design your own UI, but it’s probably better to copy someone else’s design. 
+You may design your own UI, but it’s probably better to copy someone else’s design.
 
 ## Context
 
@@ -41,25 +47,26 @@ When working on this goal, you’ll encounter questions like:
 
 ### User Stories
 
- - [ ]  Users can create to do list items.
- - [ ]  Users can delete unwanted to do list items.
- - [ ]  Users can check items off as completed.
- - [ ]  Users can rearrange to do list items.
- - [ ]  Users can edit the text on existing to do list items.
- - [ ]  When an error occurs, the user is notified.
+ - [x]  Users can create to do list items.
+ - [x]  Users can delete unwanted to do list items.
+ - [x]  Users can check items off as completed.
+ - [x]  Users can rearrange to do list items.
+ - [x]  Users can edit the text on existing to do list items.
+ - [x]  When an error occurs, the user is notified.
 
 ### Additional
 
- - [ ]  Backend uses Node.js and Express.
- - [ ]  App persists to do list items in a database.
- - [ ]  The artifact produced is properly licensed, preferably with the MIT license.
+ - [x]  Backend uses Node.js and Express.
+ - [x]  App persists to do list items in a database.
+ - [x]  The artifact produced is properly licensed, preferably with the MIT license.
 
 ### Stretch
 
  - [ ]  App is deployed on Heroku.
+ - [ ]  Added: Drag and Drop priorities
  - [ ]  Users can create multiple to-do lists.
  - [ ]  Users have their own account and can sign up and log in/out.
- - [ ]  App is written with ES6 and compiled using babel.
+ - [x]  App is written with ES6 and compiled using babel.
 
 ## Quality Rubric
 
@@ -75,16 +82,16 @@ When working on this goal, you’ll encounter questions like:
 
 ### Clear and useful README
 
- - [ ] Repository includes a README file with installation and setup instructions. [25 points]
+ - [x] Repository includes a README file with installation and setup instructions. [25 points]
  - [ ] Repository includes a README file with usage instructions and at least one example use case. [25 points]
 
 ### Proper dependency management
 
- - [ ] There is a command to install dependencies (e.g. npm install) and it is specified in the installation and setup instructions of the README. [50 points]
+ - [x] There is a command to install dependencies (e.g. npm install) and it is specified in the installation and setup instructions of the README. [50 points]
 
 ### Good project management
 
  - [ ] Commit messages are concise and descriptive. [25 points]
  - [ ] All features are added via pull requests. [25 points]
  - [ ] Every pull request has a description summarizing the changes made. [25 points]
- - [ ] Every pull request has been reviewed by at least one other person. [25 points]
+ - [x] Every pull request has been reviewed by at least one other person. [25 points]
