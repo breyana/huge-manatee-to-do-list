@@ -26,16 +26,42 @@
 
 .TodoListItem {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .TodoListItem-content {
   flex: 1;
   line-height: 36px;
+  min-width: 200px;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .TodoListItem-complete {
   display: inline-block;
   margin-right: 20px;
+}
+
+.input-task-row {
+  display: flex;
+}
+
+.priority-arrows {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.arrow {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 5px;
+  color: #818181;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  transform: scale(1.25);
 }
 
 li.placeholder {background: rgb(255,240,120);}

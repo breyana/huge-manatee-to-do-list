@@ -66,7 +66,8 @@ class App extends Component {
         </div>
           <List items={this.state.items}
           onDeleteItem={this.removeItem.bind(this)}
-          onUpdateItem={this.updateItem} />
+          onUpdateItem={this.updateItem}
+          onGetAllItems={this.getAllItems.bind(this)} />
         </div>
 
       </div>

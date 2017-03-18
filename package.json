@@ -15,11 +15,11 @@
     "react-scripts": "0.9.5"
   },
   "scripts": {
-    "start": "react-scripts start --watch & npm run db:start",
+    "start": "react-scripts start --watch ",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "db:init": "psql < ./database/schema.sql",
-    "db:start": "node database/server.js"
+    "db:start": "nodemon database/server.js"
   }
 }

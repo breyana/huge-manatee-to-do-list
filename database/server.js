@@ -34,8 +34,8 @@ app.post('/', function (request, response) {
 })
 
 app.put('/priority', function (request, response) {
-  const {higherTasks, lowerTasks} = request.body
-  Todos.swapPriority( lowerTasks, higherTasks )
+  const {originalPriority, newPriority} = request.body
+  Todos.swapPriority( newPriority, originalPriority )
     .then( () => response.json({1: 'complete swap'}) )
 })
 
