@@ -1,4 +1,5 @@
 import React from 'react'
+import InlineEdit from 'react-edit-inline'
 
 class TodoListItem extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class TodoListItem extends React.Component {
     this.setState({ complete })
   }
 
-  handleChange = () => {
+  handleCompletionChange = () => {
     const { onUpdateItem, item } = this.props
     const { task_id } = this.props.item
 
@@ -33,19 +34,41 @@ class TodoListItem extends React.Component {
         })
   }
 
+
   handleRemove = () => {
     const { onDeleteItem, id, item } = this.props
     onDeleteItem(id, item)
   }
+
+  changeData(data) {
+    const { task_id } = this.props.item
+
+    fetch(`http://localhost:5000/${task_id}`, {
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      method: 'put',
+      body: JSON.stringify({ task: data.message })
+    })
+      .then( response => response.json() )
+        .then( results => { this.setState( { task: results } ) } )
+  }
+
 
   render() {
     const { task } = this.props.item
     const { complete } = this.state
 
     return (
-      <li className="TodoListItem collection-item">
+      <li className="TodoListItem collection-item draggable">
         <span className="TodoListItem-content">
-          {task}
+          <InlineEdit
+            activeClassName="editing"
+            text={task}
+            paramName="message"
+            change={this.changeData.bind(this)}
+          />
         </span>
         <div className="TodoListItem-controls">
           <div className="TodoListItem-complete switch">
@@ -53,7 +76,7 @@ class TodoListItem extends React.Component {
               Incomplete
               <input type="checkbox"
                 checked={complete}
-                onChange={this.handleChange} />
+                onChange={this.handleCompletionChange} />
               <span className="lever"></span>
               Complete
             </label>

@@ -4,6 +4,8 @@ import './App.css';
 import TodoList from './TodoList'
 import TodoForm from './TodoForm'
 
+// import DragAndDrop from './DragAndDrop'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -67,6 +69,11 @@ class App extends Component {
           onDeleteItem={this.removeItem.bind(this)}
           onUpdateItem={this.updateItem} />
         </div>
+
+        {/* }<div className="card-panel">
+          <DragAndDrop items={this.state.items} />
+        </div> */}
+
       </div>
     );
   }

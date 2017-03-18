@@ -22,13 +22,17 @@ class TodoList extends React.Component {
     return (
       <div className="TodoList">
         Incomplete:
+
         <ul className="TodoList-active collection">
           {listItems.todo}
         </ul>
+
         Complete:
-        <ul className="TodoList-done collection">
+
+        <ul className="TodoList-done collection" >
           {listItems.done}
         </ul>
+
       </div>
     )
   }
@@ -36,7 +40,7 @@ class TodoList extends React.Component {
   static propTypes = {
     items: React.PropTypes.array.isRequired,
     onDeleteItem: React.PropTypes.func.isRequired,
-    onUpdateItem: React.PropTypes.func.isRequired
+    onUpdateItem: React.PropTypes.func.isRequired,
   }
 
   static displayName = "TodoList"
