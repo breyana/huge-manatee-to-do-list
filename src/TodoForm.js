@@ -5,6 +5,11 @@ class TodoForm extends React.Component {
   doSubmit = (event) => {
     event.preventDefault()
     const task = ReactDOM.findDOMNode(this.refs.task).value.trim()
+    if (task.length > 150) {
+      alert("Please enter a task name that is less than 150 characters")
+      this.setState({})
+      return
+    }
     if (!task) {
       return
     }
@@ -17,11 +22,10 @@ class TodoForm extends React.Component {
 
     return (
       <div>
-        <hr />
         <div>
           <form className='todoForm' onSubmit={this.doSubmit}>
             <div>
-              <label htmlFor='task'>New Task</label>
+              <b>New Task:</b>
               <div className='input-task-row'>
                 <input type='text' id='task' ref='task' placeholder='What would you like to do?' />
                 <button className="btn-floating waves-effect waves-light red" type="submit" name="action">

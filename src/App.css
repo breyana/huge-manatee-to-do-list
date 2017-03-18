@@ -26,11 +26,15 @@
 
 .TodoListItem {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .TodoListItem-content {
   flex: 1;
   line-height: 36px;
+  min-width: 200px;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .TodoListItem-complete {
@@ -38,11 +42,33 @@
   margin-right: 20px;
 }
 
-/*li.placeholder {background: rgb(255,240,120);}
+.input-task-row {
+  display: flex;
+}
+
+.priority-arrows {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.arrow {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 5px;
+  color: #818181;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  transform: scale(1.25);
+}
+
+li.placeholder {background: rgb(255,240,120);}
 li.placeholder:before {
   content: "Drop here";
   color: rgb(225,210,90);
-}*/
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
